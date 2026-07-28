@@ -1,9 +1,11 @@
-import { SEED_LISTINGS } from "@/data/seed";
-import { ensureListingsSchema, upsertListing } from "@/lib/listings";
+import { ensureListingsSchema } from "@/lib/listings";
+import { getSql } from "@/lib/db";
 
-export async function migrateAndSeed() {
+export async function migrateSchema() {
   await ensureListingsSchema();
-  for (const listing of SEED_LISTINGS) {
-    await upsertListing(listing);
-  }
+}
+
+export async function clearAllListings() {
+  const sql = getSql();
+  await sql`DELETE FROM listings`;
 }

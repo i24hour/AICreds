@@ -10,42 +10,24 @@ export function HeroVisual() {
 
       <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8">
         <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-white/55">
-          <span>Live board</span>
-          <span className="animate-pulse-line">● Market open</span>
+          <span>Market board</span>
+          <span className="animate-pulse-line">● Ready</span>
         </div>
 
-        <div className="space-y-4">
-          {[
-            { platform: "OpenAI", amount: "$420", ask: "$340" },
-            { platform: "Anthropic", amount: "$850", ask: "$680" },
-            { platform: "Azure", amount: "$1,200", ask: "$950" },
-          ].map((row, index) => (
-            <div
-              key={row.platform}
-              className="animate-rise flex items-end justify-between border-b border-white/15 pb-3 text-white"
-              style={{ animationDelay: `${0.15 * (index + 1)}s` }}
-            >
-              <div>
-                <p className="text-xs uppercase tracking-[0.16em] text-white/50">
-                  {row.platform}
-                </p>
-                <p className="mt-1 font-[family-name:var(--font-display)] text-2xl font-semibold">
-                  {row.amount}
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="text-xs text-white/50">Asking</p>
-                <p className="font-[family-name:var(--font-display)] text-xl font-medium text-[#9ec0ff]">
-                  {row.ask}
-                </p>
-              </div>
-            </div>
-          ))}
+        <div className="space-y-5">
+          <p className="animate-rise font-[family-name:var(--font-display)] text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            Real listings.
+            <br />
+            Real sellers.
+          </p>
+          <p className="animate-rise-delay-1 max-w-xs text-sm leading-relaxed text-white/65">
+            OpenAI, Anthropic, Azure, and more — published by people clearing
+            unused balances.
+          </p>
         </div>
 
-        <p className="max-w-xs text-sm leading-relaxed text-white/60">
-          List unused balances. Connect on email, WhatsApp, Telegram, Discord,
-          and more.
+        <p className="animate-rise-delay-2 max-w-xs text-sm leading-relaxed text-white/55">
+          Connect on email, WhatsApp, Telegram, Discord, and more.
         </p>
       </div>
     </div>

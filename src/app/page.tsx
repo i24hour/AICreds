@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { HeroVisual } from "@/components/HeroVisual";
 import { ListingCard } from "@/components/ListingCard";
-import { getFeaturedListings } from "@/lib/listings";
+import { getListings } from "@/lib/listings";
 import { PLATFORMS } from "@/lib/platforms";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const featured = await getFeaturedListings(3);
+  const latest = (await getListings()).slice(0, 3);
 
   return (
     <div className="atmosphere">
@@ -63,7 +63,7 @@ export default async function HomePage() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-ink">
-              Featured listings
+              Latest listings
             </h2>
             <p className="mt-2 max-w-xl text-ink-muted">
               Fresh offers across major AI platforms — open a listing to see
@@ -79,16 +79,16 @@ export default async function HomePage() {
         </div>
 
         <div className="mt-10 border-t border-line">
-          {featured.length === 0 ? (
+          {latest.length === 0 ? (
             <p className="py-8 text-sm text-ink-muted">
-              No featured listings yet.{" "}
+              No listings yet.{" "}
               <Link href="/sell" className="font-medium text-accent-deep underline">
-                List your credits
+                Be the first to list credits
               </Link>
               .
             </p>
           ) : (
-            featured.map((listing) => (
+            latest.map((listing) => (
               <ListingCard key={listing.id} listing={listing} />
             ))
           )}

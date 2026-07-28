@@ -29,10 +29,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run build` — production build
 - `npm run start` — serve production build
 - `npm run lint` — ESLint
-- `npm run db:migrate` — create `listings` table and seed sample data
+- `npm run db:migrate` — create `listings` table
+- `npm run db:migrate -- --clear` — create table and delete all listings
 
 ## Database
 
 Neon resource: `aicreds-db` (connected to the Vercel `aicreds` project).
 
-Listings are stored in the `listings` table and shared across all users.
+Listings are stored in the `listings` table and shared across all users. No demo/seed listings are included.

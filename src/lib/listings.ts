@@ -101,17 +101,6 @@ export async function getListings(platform?: PlatformId | "all") {
   return rows.map(toListing);
 }
 
-export async function getFeaturedListings(limit = 3) {
-  const sql = getSql();
-  const rows = (await sql`
-    SELECT * FROM listings
-    WHERE featured = TRUE
-    ORDER BY created_at DESC
-    LIMIT ${limit}
-  `) as ListingRow[];
-  return rows.map(toListing);
-}
-
 export async function getListingById(id: string) {
   const sql = getSql();
   const rows = (await sql`
@@ -187,59 +176,3 @@ export async function createListing(input: ListingInput) {
   } satisfies Listing;
 }
 
-export async function upsertListing(listing: Listing) {
-  const sql = getSql();
-  await sql`
-    INSERT INTO listings (
-      id,
-      platform,
-      title,
-      description,
-      credit_amount,
-      credit_unit,
-      price_usd,
-      seller_name,
-      contact_email,
-      contact_phone,
-      contact_whatsapp,
-      contact_telegram,
-      contact_discord,
-      contact_reddit,
-      featured,
-      created_at
-    ) VALUES (
-      ${listing.id},
-      ${listing.platform},
-      ${listing.title},
-      ${listing.description},
-      ${listing.creditAmount},
-      ${listing.creditUnit},
-      ${listing.priceUSD},
-      ${listing.sellerName},
-      ${listing.contact.email ?? null},
-      ${listing.contact.phone ?? null},
-      ${listing.contact.whatsapp ?? null},
-      ${listing.contact.telegram ?? null},
-      ${listing.contact.discord ?? null},
-      ${listing.contact.reddit ?? null},
-      ${listing.featured ?? false},
-      ${listing.createdAt}
-    )
-    ON CONFLICT (id) DO UPDATE SET
-      platform = EXCLUDED.platform,
-      title = EXCLUDED.title,
-      description = EXCLUDED.description,
-      credit_amount = EXCLUDED.credit_amount,
-      credit_unit = EXCLUDED.credit_unit,
-      price_usd = EXCLUDED.price_usd,
-      seller_name = EXCLUDED.seller_name,
-      contact_email = EXCLUDED.contact_email,
-      contact_phone = EXCLUDED.contact_phone,
-      contact_whatsapp = EXCLUDED.contact_whatsapp,
-      contact_telegram = EXCLUDED.contact_telegram,
-      contact_discord = EXCLUDED.contact_discord,
-      contact_reddit = EXCLUDED.contact_reddit,
-      featured = EXCLUDED.featured,
-      created_at = EXCLUDED.created_at
-  `;
-}

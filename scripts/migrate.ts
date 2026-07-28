@@ -1,11 +1,17 @@
 import { config } from "dotenv";
-import { migrateAndSeed } from "../src/lib/migrate";
+import { clearAllListings, migrateSchema } from "../src/lib/migrate";
 
 config({ path: ".env.local" });
 
 async function main() {
-  await migrateAndSeed();
-  console.log("Neon listings table migrated and seeded.");
+  const clear = process.argv.includes("--clear");
+  await migrateSchema();
+  if (clear) {
+    await clearAllListings();
+    console.log("Neon listings table cleared.");
+  } else {
+    console.log("Neon listings table migrated.");
+  }
 }
 
 main().catch((error) => {
