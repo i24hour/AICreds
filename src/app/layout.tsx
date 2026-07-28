@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Figtree, Syne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { ListingsProvider } from "@/lib/listings-context";
 import "./globals.css";
 
 const display = Syne({
@@ -34,11 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
-        <ListingsProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </ListingsProvider>
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

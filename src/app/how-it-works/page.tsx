@@ -16,8 +16,9 @@ export default function HowItWorksPage() {
           How AICreds works
         </h1>
         <p className="mt-4 text-base leading-relaxed text-ink-muted">
-          AICreds is a listing board — not an escrow. Sellers publish offers;
-          buyers reach out through the contact channels provided.
+          AICreds is a listing board backed by Neon Postgres — not an escrow.
+          Sellers publish offers; buyers reach out through the contact channels
+          provided.
         </p>
 
         <ol className="mt-12 space-y-10">

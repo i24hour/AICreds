@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { HeroVisual } from "@/components/HeroVisual";
 import { ListingCard } from "@/components/ListingCard";
-import { SEED_LISTINGS } from "@/data/seed";
+import { getFeaturedListings } from "@/lib/listings";
 import { PLATFORMS } from "@/lib/platforms";
 
-export default function HomePage() {
-  const featured = SEED_LISTINGS.filter((l) => l.featured).slice(0, 3);
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const featured = await getFeaturedListings(3);
 
   return (
     <div className="atmosphere">
@@ -77,9 +79,19 @@ export default function HomePage() {
         </div>
 
         <div className="mt-10 border-t border-line">
-          {featured.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
-          ))}
+          {featured.length === 0 ? (
+            <p className="py-8 text-sm text-ink-muted">
+              No featured listings yet.{" "}
+              <Link href="/sell" className="font-medium text-accent-deep underline">
+                List your credits
+              </Link>
+              .
+            </p>
+          ) : (
+            featured.map((listing) => (
+              <ListingCard key={listing.id} listing={listing} />
+            ))
+          )}
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 # AICreds
 
-A professional marketplace for buying and selling unused AI platform credits.
+A marketplace for buying and selling unused AI platform credits, backed by **Neon Postgres** on Vercel.
 
 ## What it does
 
@@ -10,12 +10,14 @@ A professional marketplace for buying and selling unused AI platform credits.
 ## Stack
 
 - Next.js (App Router) + TypeScript + Tailwind CSS
-- Client-side listings store (seed data + `localStorage` for new listings)
+- Neon serverless Postgres (`DATABASE_URL` via Vercel Marketplace)
 
 ## Develop
 
 ```bash
 npm install
+vercel env pull .env.local
+npm run db:migrate
 npm run dev
 ```
 
@@ -27,3 +29,10 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run build` — production build
 - `npm run start` — serve production build
 - `npm run lint` — ESLint
+- `npm run db:migrate` — create `listings` table and seed sample data
+
+## Database
+
+Neon resource: `aicreds-db` (connected to the Vercel `aicreds` project).
+
+Listings are stored in the `listings` table and shared across all users.

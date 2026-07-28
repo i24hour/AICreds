@@ -1,7 +1,6 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import { ContactPanel } from "@/components/ContactPanel";
 import { PlatformBadge } from "@/components/PlatformBadge";
 import {
@@ -10,42 +9,31 @@ import {
   formatRelativeDate,
   savingsPercent,
 } from "@/lib/format";
-import { useListings } from "@/lib/listings-context";
+import { getListingById } from "@/lib/listings";
 
-export default function ListingDetailPage() {
-  const params = useParams<{ id: string }>();
-  const { getListing, ready } = useListings();
-  const listing = getListing(params.id);
+export const dynamic = "force-dynamic";
 
-  if (!ready) {
-    return (
-      <div className="atmosphere min-h-full px-5 py-16 text-sm text-ink-muted sm:px-8">
-        Loading listing…
-      </div>
-    );
-  }
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const listing = await getListingById(id);
+  return {
+    title: listing?.title ?? "Listing not found",
+  };
+}
 
-  if (!listing) {
-    return (
-      <div className="atmosphere min-h-full">
-        <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">
-          <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold text-ink">
-            Listing not found
-          </h1>
-          <p className="mt-3 text-ink-muted">
-            This listing may have been removed, or it only exists in another
-            browser.
-          </p>
-          <Link
-            href="/listings"
-            className="mt-8 inline-flex h-11 items-center rounded-md bg-accent px-5 text-sm font-semibold text-white hover:bg-accent-deep"
-          >
-            Back to market
-          </Link>
-        </div>
-      </div>
-    );
-  }
+export default async function ListingDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const listing = await getListingById(id);
+
+  if (!listing) notFound();
 
   const save = savingsPercent(
     listing.creditAmount,

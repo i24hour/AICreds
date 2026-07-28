@@ -27,8 +27,8 @@ export function Footer() {
       </div>
       <div className="border-t border-line/70">
         <p className="mx-auto max-w-6xl px-5 py-4 text-xs text-ink-muted sm:px-8">
-          Buyers and sellers arrange transfers privately. AICreds does not hold
-          funds or verify account ownership.
+          Listings are stored in Neon Postgres. Buyers and sellers arrange
+          transfers privately — AICreds does not hold funds or verify ownership.
         </p>
       </div>
     </footer>
