@@ -74,42 +74,46 @@ export function ContactPanel({
 
   return (
     <div>
-      <p className="text-sm text-ink-muted">
+      <p className="text-sm leading-relaxed text-ink-muted">
         Reach {sellerName} on any of the channels below. Deals happen off-platform.
       </p>
-      <ul className="mt-5 divide-y divide-line border-y border-line">
+      <div className="mt-6 grid gap-3">
         {available.map((item) => {
           const value = contact[item.key]!.trim();
           const href = item.href(value);
           const content = (
-            <>
-              <span className="text-xs uppercase tracking-[0.14em] text-ink-muted">
-                {item.label}
-              </span>
-              <span className="mt-1 block font-medium text-ink">
-                {item.display(value)}
-              </span>
-            </>
+            <div className="flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">
+                  {item.label}
+                </p>
+                <p className="mt-1 truncate font-medium text-ink">
+                  {item.display(value)}
+                </p>
+              </div>
+              {href ? (
+                <span className="text-accent">→</span>
+              ) : null}
+            </div>
           );
 
-          return (
-            <li key={item.key}>
-              {href ? (
-                <a
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="block py-4 transition-colors hover:bg-accent-soft/50 sm:px-2"
-                >
-                  {content}
-                </a>
-              ) : (
-                <div className="py-4 sm:px-2">{content}</div>
-              )}
-            </li>
+          return href ? (
+            <a
+              key={item.key}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="card card-hover rounded-xl p-4"
+            >
+              {content}
+            </a>
+          ) : (
+            <div key={item.key} className="card rounded-xl p-4">
+              {content}
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }

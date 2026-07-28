@@ -11,9 +11,14 @@ export function PlatformFilters({
   active: PlatformId | "all";
   counts: Partial<Record<PlatformId | "all", number>>;
 }) {
-  const options: Array<{ id: PlatformId | "all"; label: string }> = [
+  const options: Array<{ id: PlatformId | "all"; label: string; short?: string; hue?: string }> = [
     { id: "all", label: "All platforms" },
-    ...PLATFORMS.map((p) => ({ id: p.id as PlatformId, label: p.name })),
+    ...PLATFORMS.map((p) => ({
+      id: p.id as PlatformId,
+      label: p.name,
+      short: p.short,
+      hue: p.hue,
+    })),
   ];
 
   return (
@@ -29,14 +34,23 @@ export function PlatformFilters({
                 ? "/listings"
                 : `/listings?platform=${option.id}`
             }
-            className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+            className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
               isActive
                 ? "border-accent bg-accent text-white"
                 : "border-line bg-transparent text-ink-muted hover:border-accent hover:bg-accent-soft hover:text-accent"
             }`}
           >
+            {option.hue ? (
+              <span
+                className="inline-flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold text-white"
+                style={{ backgroundColor: option.hue }}
+                aria-hidden
+              >
+                {option.short}
+              </span>
+            ) : null}
             {option.label}
-            <span className={`ml-2 ${isActive ? "text-white/80" : "text-ink-muted"}`}>
+            <span className={isActive ? "text-white/80" : "text-ink-muted"}>
               {count}
             </span>
           </Link>

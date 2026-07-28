@@ -43,23 +43,23 @@ export default async function ListingDetailPage({
 
   return (
     <div className="atmosphere min-h-full">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[1.2fr_0.8fr]">
+      <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[1.15fr_0.85fr]">
         <article>
           <Link
             href="/listings"
-            className="text-sm font-medium text-ink-muted transition hover:text-ink"
+            className="inline-flex items-center gap-1 text-sm font-medium text-ink-muted transition hover:text-accent"
           >
             ← All listings
           </Link>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <PlatformBadge platform={listing.platform} />
             <span className="text-sm text-ink-muted">
               {formatRelativeDate(listing.createdAt)}
             </span>
           </div>
 
-          <h1 className="mt-5 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+          <h1 className="mt-6 font-[family-name:var(--font-display)] text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             {listing.title}
           </h1>
 
@@ -67,49 +67,51 @@ export default async function ListingDetailPage({
             {listing.description}
           </p>
 
-          <dl className="mt-10 grid gap-6 border-y border-line py-8 sm:grid-cols-3">
-            <div>
-              <dt className="text-xs uppercase tracking-[0.14em] text-ink-muted">
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            <div className="card rounded-2xl p-5">
+              <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">
                 Credits
-              </dt>
-              <dd className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold text-ink">
+              </p>
+              <p className="mt-2 font-[family-name:var(--font-display)] text-2xl font-bold text-ink">
                 {formatCreditAmount(listing.creditAmount, listing.creditUnit)}
-              </dd>
+              </p>
             </div>
-            <div>
-              <dt className="text-xs uppercase tracking-[0.14em] text-ink-muted">
+            <div className="card rounded-2xl p-5">
+              <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">
                 Asking price
-              </dt>
-              <dd className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold text-ink">
+              </p>
+              <p className="mt-2 font-[family-name:var(--font-display)] text-2xl font-bold text-ink">
                 {formatMoney(listing.priceUSD)}
-              </dd>
+              </p>
             </div>
-            <div>
-              <dt className="text-xs uppercase tracking-[0.14em] text-ink-muted">
+            <div className="card rounded-2xl p-5">
+              <p className="text-xs uppercase tracking-[0.16em] text-ink-muted">
                 Seller
-              </dt>
-              <dd className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold text-ink">
+              </p>
+              <p className="mt-2 font-[family-name:var(--font-display)] text-2xl font-bold text-ink">
                 {listing.sellerName}
-              </dd>
+              </p>
             </div>
-          </dl>
+          </div>
 
           {save !== null ? (
-            <p className="mt-6 text-sm font-medium text-success">
-              About {save}% below face value of the credit balance.
+            <p className="mt-8 inline-flex rounded-full bg-success/15 px-4 py-2 text-sm font-semibold text-success">
+              About {save}% below face value
             </p>
           ) : null}
         </article>
 
-        <aside className="h-fit rounded-2xl border border-line bg-surface p-6 sm:p-8">
-          <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
-            Contact seller
-          </h2>
-          <div className="mt-4">
-            <ContactPanel
-              contact={listing.contact}
-              sellerName={listing.sellerName}
-            />
+        <aside className="h-fit">
+          <div className="card rounded-2xl p-6 sm:p-8">
+            <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-ink">
+              Contact seller
+            </h2>
+            <div className="mt-5">
+              <ContactPanel
+                contact={listing.contact}
+                sellerName={listing.sellerName}
+              />
+            </div>
           </div>
         </aside>
       </div>
