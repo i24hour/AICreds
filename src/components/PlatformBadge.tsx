@@ -11,12 +11,12 @@ export function PlatformBadge({
   const p = getPlatform(platform);
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-md border border-line bg-surface ${
-        size === "sm" ? "px-2 py-1 text-xs" : "px-2.5 py-1.5 text-sm"
+      className={`inline-flex items-center gap-2 rounded-full border border-line bg-surface ${
+        size === "sm" ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"
       }`}
     >
       <span
-        className="inline-flex h-5 w-5 items-center justify-center rounded text-[10px] font-semibold text-white"
+        className="inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold text-white"
         style={{ backgroundColor: p.hue }}
         aria-hidden
       >

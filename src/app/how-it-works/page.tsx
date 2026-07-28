@@ -16,9 +16,8 @@ export default function HowItWorksPage() {
           How AICreds works
         </h1>
         <p className="mt-4 text-base leading-relaxed text-ink-muted">
-          AICreds is a listing board backed by Neon Postgres — not an escrow.
-          Sellers publish offers; buyers reach out through the contact channels
-          provided.
+          AICreds is a listing board — not an escrow. Sellers publish offers;
+          buyers reach out through the contact channels provided.
         </p>
 
         <ol className="mt-12 space-y-10">
@@ -55,13 +54,13 @@ export default function HowItWorksPage() {
         <div className="mt-14 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/sell"
-            className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-white hover:bg-accent-deep"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-6 text-sm font-bold text-white hover:bg-accent-deep"
           >
             List credits
           </Link>
           <Link
             href="/listings"
-            className="inline-flex h-12 items-center justify-center rounded-md border border-line bg-surface px-6 text-sm font-semibold text-ink hover:border-accent hover:bg-accent-soft"
+            className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-transparent px-6 text-sm font-bold text-ink hover:border-accent hover:bg-accent-soft"
           >
             Browse listings
           </Link>

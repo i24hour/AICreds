@@ -101,7 +101,7 @@ export default async function ListingDetailPage({
           ) : null}
         </article>
 
-        <aside className="h-fit border border-line bg-surface p-6 sm:p-8">
+        <aside className="h-fit rounded-2xl border border-line bg-surface p-6 sm:p-8">
           <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
             Contact seller
           </h2>

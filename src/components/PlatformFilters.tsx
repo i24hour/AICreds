@@ -29,10 +29,10 @@ export function PlatformFilters({
                 ? "/listings"
                 : `/listings?platform=${option.id}`
             }
-            className={`shrink-0 rounded-md border px-3 py-2 text-sm transition-colors ${
+            className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
               isActive
                 ? "border-accent bg-accent text-white"
-                : "border-line bg-surface text-ink-muted hover:border-accent hover:text-ink"
+                : "border-line bg-transparent text-ink-muted hover:border-accent hover:bg-accent-soft hover:text-accent"
             }`}
           >
             {option.label}

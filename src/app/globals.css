@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #eef1f4;
-  --bg-elevated: #f7f9fb;
-  --ink: #0f1720;
-  --ink-muted: #5b6675;
-  --line: #d5dde6;
-  --accent: #1f5eff;
-  --accent-deep: #1346c7;
-  --accent-soft: #dce7ff;
-  --success: #0f7a4f;
-  --warn: #9a5b00;
-  --surface: #ffffff;
-  --hero-glow: rgba(31, 94, 255, 0.18);
-  --grid: rgba(15, 23, 32, 0.06);
+  --bg: #000000;
+  --bg-elevated: #0a0a0a;
+  --ink: #e7e9ea;
+  --ink-muted: #71767b;
+  --line: #2f3336;
+  --accent: #1d9bf0;
+  --accent-deep: #1a8cd8;
+  --accent-soft: rgba(29, 155, 240, 0.12);
+  --success: #00ba7c;
+  --warn: #ff7a00;
+  --surface: #16181c;
+  --hero-glow: rgba(29, 155, 240, 0.22);
+  --grid: rgba(231, 233, 234, 0.06);
 }
 
 @theme inline {
@@ -37,6 +37,7 @@
 }
 
 html {
+  color-scheme: dark;
   scroll-behavior: smooth;
 }
 
@@ -55,15 +56,15 @@ a {
 }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--ink);
+  background: rgba(29, 155, 240, 0.35);
+  color: #fff;
 }
 
 .atmosphere {
   background:
-    radial-gradient(1200px 600px at 80% -10%, var(--hero-glow), transparent 60%),
-    radial-gradient(900px 500px at -10% 20%, rgba(15, 122, 79, 0.08), transparent 55%),
-    linear-gradient(180deg, #e8edf3 0%, var(--bg) 42%, #e9eef3 100%);
+    radial-gradient(1000px 520px at 85% -5%, var(--hero-glow), transparent 55%),
+    radial-gradient(700px 400px at -5% 10%, rgba(29, 155, 240, 0.08), transparent 50%),
+    #000000;
 }
 
 .grid-overlay {

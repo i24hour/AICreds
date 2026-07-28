@@ -26,7 +26,7 @@ export function SellForm() {
   }, [state.id, router]);
 
   const fieldClass =
-    "mt-2 w-full rounded-md border border-line bg-surface px-3 py-2.5 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent-soft";
+    "mt-2 w-full rounded-xl border border-line bg-bg px-3 py-2.5 text-ink outline-none transition placeholder:text-ink-muted focus:border-accent focus:ring-2 focus:ring-accent-soft";
   const labelClass = "text-sm font-medium text-ink";
 
   return (
@@ -193,7 +193,7 @@ export function SellForm() {
       </section>
 
       {state.error ? (
-        <p className="rounded-md border border-warn/30 bg-[#fff7ea] px-4 py-3 text-sm text-warn">
+        <p className="rounded-md border border-warn/40 bg-warn/10 px-4 py-3 text-sm text-warn">
           {state.error}
         </p>
       ) : null}
@@ -202,13 +202,12 @@ export function SellForm() {
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-deep disabled:opacity-60"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-6 text-sm font-bold text-white transition hover:bg-accent-deep disabled:opacity-60"
         >
           {pending ? "Publishing…" : "Publish listing"}
         </button>
         <p className="text-xs text-ink-muted sm:max-w-sm">
-          Listings are saved to Neon Postgres and visible to every buyer on the
-          marketplace.
+          Your listing goes live for every buyer on the marketplace.
         </p>
       </div>
     </form>

@@ -28,13 +28,13 @@ export default async function HomePage() {
             <div className="animate-rise-delay-2 mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/sell"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-deep"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-6 text-sm font-bold text-white transition hover:bg-accent-deep"
               >
                 List your credits
               </Link>
               <Link
                 href="/listings"
-                className="inline-flex h-12 items-center justify-center rounded-md border border-line bg-surface px-6 text-sm font-semibold text-ink transition hover:border-accent hover:bg-accent-soft"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-line bg-transparent px-6 text-sm font-bold text-ink transition hover:border-accent hover:bg-accent-soft"
               >
                 Browse the market
               </Link>
