@@ -101,7 +101,7 @@ export default async function ListingDetailPage({
           ) : null}
         </article>
 
-        <aside className="h-fit">
+        <aside id="contact" className="h-fit scroll-mt-24">
           <div className="card rounded-2xl p-6 sm:p-8">
             <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold text-ink">
               Contact seller
